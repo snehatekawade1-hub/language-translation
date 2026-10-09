@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Smart Translator</title>
+  <meta name="description" content="Smart Translator: translate text between English, Hindi, Marathi, Spanish, French, German, Japanese, Chinese, Arabic and more.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <svg class="logo" viewBox="0 0 48 48" width="48" height="48" role="img" aria-label="Language icon">
+        <rect x="2" y="2" width="44" height="44" rx="13" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-opacity=".55" stroke-width="2"/>
+        <text x="12" y="27" font-size="19" font-weight="700" fill="#fff" font-family="system-ui, sans-serif">A</text>
+        <text x="25" y="38" font-size="19" font-weight="700" fill="#fff" font-family="'Noto Sans CJK SC','Microsoft YaHei','Hiragino Sans GB',sans-serif">文</text>
+      </svg>
+      <div>
+        <h1>Smart Translator</h1>
+        <p>Translate text between more than 20 languages.</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="app">
+
+    <section class="lang-bar card" aria-label="Choose languages">
+      <div class="field">
+        <label for="sourceLang">From</label>
+        <select id="sourceLang"></select>
+      </div>
+
+      <button id="swapBtn" class="icon-btn swap" type="button" aria-label="Swap languages" title="Swap languages">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M7 4 3 8l4 4"/><path d="M3 8h14"/><path d="m17 12 4 4-4 4"/><path d="M21 16H7"/>
+        </svg>
+      </button>
+
+      <div class="field">
+        <label for="targetLang">To</label>
+        <select id="targetLang"></select>
+      </div>
+    </section>
+
+    <div id="errorBox" class="error" role="alert" hidden></div>
+
+    <section class="panels">
+      <div class="card panel">
+        <div class="panel-head">
+          <h2>Your text</h2>
+          <span id="detected" class="badge" hidden></span>
+        </div>
+        <label for="inputText" class="sr-only">Text to translate</label>
+        <textarea id="inputText" dir="auto" maxlength="5000" rows="8" placeholder="Type or paste the text you want to translate"></textarea>
+        <div class="panel-foot">
+          <span class="hint">Ctrl + Enter to translate</span>
+          <span id="charCount" aria-live="off">0 / 5000</span>
+        </div>
+      </div>
+
+      <div class="card panel panel-out">
+        <div class="panel-head">
+          <h2>Translation</h2>
+          <div class="tools">
+            <button id="speakBtn" class="icon-btn" type="button" aria-label="Listen to translation" title="Listen to translation">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M11 5 6 9H3v6h3l5 4V5z"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/>
+              </svg>
+            </button>
+            <button id="copyBtn" class="btn btn-small" type="button">
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15H4a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h10a1 1 0 0 1 1 1v1"/>
+              </svg>
+              <span id="copyLabel">Copy Translation</span>
+            </button>
+          </div>
+        </div>
+        <div id="outputText" class="output is-empty" data-placeholder="Your translation will appear here" aria-live="polite"></div>
+        <div class="panel-foot">
+          <span id="status" class="hint"></span>
+        </div>
+      </div>
+    </section>
+
+    <div class="actions">
+      <button id="translateBtn" class="btn btn-primary" type="button">
+        <span class="spinner" aria-hidden="true"></span>
+        <span id="translateLabel">Translate</span>
+      </button>
+      <button id="clearBtn" class="btn btn-outline" type="button">Clear</button>
+    </div>
+
+    <section class="examples" aria-label="Example translations">
+      <h2>Try an example</h2>
+      <div class="chips">
+        <button class="chip" type="button" data-text="Hello, how are you?" data-from="en" data-to="hi">English to Hindi</button>
+        <button class="chip" type="button" data-text="Hello, how are you?" data-from="en" data-to="mr">English to Marathi</button>
+        <button class="chip" type="button" data-text="Where is the railway station?" data-from="en" data-to="hi">Station question, Hindi</button>
+        <button class="chip" type="button" data-text="Thank you very much for your help." data-from="en" data-to="mr">Thank you, Marathi</button>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>This demo uses the free MyMemory translation service, which has daily limits. Machine translation can be wrong, so check anything important.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
